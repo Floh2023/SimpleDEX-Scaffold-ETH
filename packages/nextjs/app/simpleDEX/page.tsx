@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Address, AddressInput, IntegerInput } from "~~/components/scaffold-eth";
-import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useScaffoldReadContract, useScaffoldWriteContract, useDeployedContractInfo } from "~~/hooks/scaffold-eth";
 
 const SimpleDEX = () => {
   const [tokenAddress, setTokenAddress] = useState("");
@@ -13,6 +13,13 @@ const SimpleDEX = () => {
   const [swapAmountA, setSwapAmountA] = useState("0");
   const [swapAmountB, setSwapAmountB] = useState("0");
   const [newOwner, setNewOwner] = useState("");
+  const { data: deployedContractDataA } = useDeployedContractInfo("TokenA");
+  const AA = deployedContractDataA?.address;
+  const { data: deployedContractData } = useDeployedContractInfo("TokenB");
+  const BB = deployedContractData?.address;
+  const {data: deployedContractDataDEX} = useDeployedContractInfo("SimpleDEX");
+  const SDEX =  deployedContractDataDEX?.address;
+
 
   // Read: getPrice
   const { data: price } = useScaffoldReadContract({
@@ -104,12 +111,12 @@ const SimpleDEX = () => {
   return (
     <div className="flex flex-col items-center gap-6 p-4">
         <h1 className="text-2xl font-bold">SimpleDEX </h1>
-        <Address address="0xFD471836031dc5108809D173A067e8486B9047A3"/>
+        <Address address={SDEX}/>
       <div className="flex items-center gap-6 p-4">
         <h2 className="text-lg font-semibold">Token A</h2>
-        <Address address="0x82e01223d51Eb87e16A03E24687EDF0F294da6f1" />
+        <Address address={AA} />
         <h2 className="text-lg font-semibold">Token B</h2>
-        <Address address="0x2bdCC0de6bE1f7D2ee689a0342D76F52E8EFABa3" />
+        <Address address={BB} />
       </div>
          {/* Get Price */}
          <div className="card bg-primary text-primary-content w-96 p-4 shadow-lg">

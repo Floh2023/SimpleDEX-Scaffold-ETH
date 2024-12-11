@@ -2,7 +2,7 @@
 import type { NextPage } from "next";
 import { AddressInput, IntegerInput, InputBase, Address } from "~~/components/scaffold-eth";
 import { useState } from "react";
-import { useScaffoldReadContract, useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+import { useScaffoldReadContract, useScaffoldWriteContract, useDeployedContractInfo } from "~~/hooks/scaffold-eth";
 import { useAccount } from "wagmi";
 import { formatEther } from "viem";
 
@@ -16,6 +16,10 @@ const Token: NextPage = () => {
   const [approvalAmountA, setApprovalAmountA] = useState<string>("");
   const [spenderAddressB, setSpenderAddressB] = useState("");
   const [approvalAmountB, setApprovalAmountB] = useState<string>("");
+  const { data: deployedContractDataA } = useDeployedContractInfo("TokenA");
+  const AA = deployedContractDataA?.address;
+  const { data: deployedContractData } = useDeployedContractInfo("TokenB");
+  const BB = deployedContractData?.address;
 
   // Token A
   const { data: tokenBalanceA } = useScaffoldReadContract({
@@ -92,7 +96,7 @@ const Token: NextPage = () => {
         <div className="card bg-primary text-primary-content w-96">
           <div className="card-body">
             <h2 className="card-title">Mint Token A</h2>
-            <Address address="0x82e01223d51Eb87e16A03E24687EDF0F294da6f1" />
+            <Address address={AA} />
 
             <label>Actual amount</label>
             <InputBase
@@ -140,7 +144,7 @@ const Token: NextPage = () => {
         <div className="card bg-secondary text-secondary-content w-96">
           <div className="card-body">
             <h2 className="card-title">Mint Token B</h2>
-            <Address address="0x2bdCC0de6bE1f7D2ee689a0342D76F52E8EFABa3" />
+            <Address address={BB} />
 
             <label>Actual amount</label>
             <InputBase
