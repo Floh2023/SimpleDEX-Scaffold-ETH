@@ -53,12 +53,13 @@ Para ejecutar este proyecto en tu máquina local, sigue los siguientes pasos:
 
 4. **Ejecutar el servidor de desarrollo**:
 
-   Para iniciar el servidor local, usa el siguiente comando:
+   Para interactuar con el proyecto debes primero conectarte a un nodo local, luego deployar los contractos y por ultimo iniciar el servidor local:
 
    ```bash
-   yarn start
    yarn chain
    yarn deploy
+   yarn start
+   
    ```
 
    Ahora podrás acceder a la aplicación en `http://localhost:3000`.
