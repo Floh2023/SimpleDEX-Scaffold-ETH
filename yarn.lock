@@ -8067,7 +8067,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hardhat@npm:~2.22.10":
+"hardhat@npm:^2.22.17, hardhat@npm:~2.22.10":
   version: 2.22.17
   resolution: "hardhat@npm:2.22.17"
   dependencies:
@@ -11972,6 +11972,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "se-2@workspace:."
   dependencies:
+    hardhat: ^2.22.17
     husky: ~8.0.3
     lint-staged: ~13.2.2
   languageName: unknown
