@@ -57,6 +57,8 @@ Para ejecutar este proyecto en tu máquina local, sigue los siguientes pasos:
 
    ```bash
    yarn start
+   yarn chain
+   yarn deploy
    ```
 
    Ahora podrás acceder a la aplicación en `http://localhost:3000`.
